@@ -22,7 +22,7 @@ Container are not new concepts but dockers made it easy, friendly and usable.
 
 * *Docker File:* Contains a set of instruction on how to create a docker image & run our app. It defines all the needed dependences and lib that are required to run our app. 
 
-** Docker Image:* It a template to create containers.
+* *Docker Image:* It a template to create containers.
 
 * *Docker Container:* Its an instance of Docker images running as an isolated process.
 
