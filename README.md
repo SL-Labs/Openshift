@@ -6,11 +6,11 @@
 
 Its a segregated user space env for running our application. This is made possible with the help of the below linux features
 
-*Namespace:* Generally used to isolate process to hide containers and protect system resources making it invisible to other containers and avoid interaction between each containers.Docker creates namespace for each containers. 
+* *Namespace:* Generally used to isolate process to hide containers and protect system resources making it invisible to other containers and avoid interaction between each containers.Docker creates namespace for each containers. 
 
-*CGroups (Controll Groups):* Creates partition for the set of process to limit and make sure that the resources are available only for that particular container and its not stealing too much resources from the host machine which will end of performance issue and resource failures to the host machine
+* *CGroups (Controll Groups):* Creates partition for the set of process to limit and make sure that the resources are available only for that particular container and its not stealing too much resources from the host machine which will end of performance issue and resource failures to the host machine
 
-*SELinux:* This is used to protect the access between each containers and also between containers to host machine. 
+* *SELinux:* This is used to protect the access between each containers and also between containers to host machine. 
 
 Container are not new concepts but dockers made it easy, friendly and usable.
 
@@ -20,15 +20,16 @@ Container are not new concepts but dockers made it easy, friendly and usable.
 ==========
 
 * Docker is a new way of deployment strategy which will pack our app with all the needed dependencies & lib.
+
 * Docker is an Opensource Container implementation supported by Red Hat and used in openshift
 
-*Docker File:* Contains a set of instruction on how to create a docker image & run our app. It defines all the needed dependences and lib that are required to run our app. 
+* *Docker File:* Contains a set of instruction on how to create a docker image & run our app. It defines all the needed dependences and lib that are required to run our app. 
 
-*Docker Image:* It a template to create containers.
+** Docker Image:* It a template to create containers.
 
-*Docker Container:* Its an instance of Docker images running as an isolated process.
+* *Docker Container:* Its an instance of Docker images running as an isolated process.
 
-*Docker Registry:* Docker images are stored in the registry 
+* *Docker Registry:* Docker images are stored in the registry 
 
 | Docker commands |
 ===================
@@ -67,6 +68,7 @@ Best Practice to create Docker File
 ===============
 
 * Kubernetes is an container orchestration and management tool/software which provides Caas (Container As A Service)
+
 * Kubernetes contains Etcd (key value store) where its store all its data, state of the containers and all information that is required to run the cluster.
 
 Need:
@@ -76,22 +78,25 @@ Container & Docker architecture are light weight and they will be spinning our a
 But at the same time they are bound to fail. 
 
 * Kubernetes makes sure that our application deployed over the container & Docker architecture is highly available.
+
 * Kubernetes maintains HA by spinning a new container automatically when a container fails and maintains the integrity of the cluster.
+
 * Kubernetes also takes care of orchestration to connect multiples containers running in the cluster.
 
 Kubernetes cluster consists of a master node & worker node.
 
 * Master node takes care of orchestration, scheduling, monitoring, datastore, management, replication, authentication.
+
 * Worker node is where our application are deployed as containers i.e, pods.
 
 Task:
 ----- 
 
-*Orchestration:* How to make sure that containers talk to each other in the cluster. Solution to this problem is : Services (since containers ip address are not constant and transient)
+* *Orchestration:* How to make sure that containers talk to each other in the cluster. Solution to this problem is : Services (since containers ip address are not constant and transient)
 
-*Scheduling:* How to make sure that our application is highly available with the desired minimum number of instance running at any given time. Solution to this problem is Replication controllers. Also we can scale extra number of containers based on load.
+* *Scheduling:* How to make sure that our application is highly available with the desired minimum number of instance running at any given time. Solution to this problem is Replication controllers. Also we can scale extra number of containers based on load.
 
-*Isolation:* Maintains the integrity of the cluster and makes sure that the failure of container is not affecting the other containers running in different nodes 
+* *Isolation:* Maintains the integrity of the cluster and makes sure that the failure of container is not affecting the other containers running in different nodes 
 
 
 Features:
@@ -112,13 +117,12 @@ Features:
 | Openshift |
 =============
 
-* Build on top of docker & kubernetes inheriting its core features and implements some extra features on top of 
-* to it making it user friendly for developers & administrators and implementing CI/CD pipeline for devops process.
+* Built on top of docker & kubernetes inheriting its core features and implements some extra features on top of to it making it user friendly for developers & administrators and implementing CI/CD pipeline for devops process.
 
 Features: 
 ---------
 
-* s2i : It a feature that allows us to build our application from the source code directly to docker image via the S2i scripts.
+* *s2i:* It a feature that allows us to build our application from the source code directly to docker image via the S2i scripts.
 		
 	Benefits of s2i
 	---------------
@@ -129,38 +133,40 @@ Features:
 		
 	* Increase speed : s2i can perform lots of complex operations in an efficient manner in the most possible way it can be rather then the developer trying to manage the dockerfile. This will minimize any overhead that we might encounter while doing this activity manually.
 
-* Image Streams : Its a resource file that compiles all of the related images into a single file. For example for MySQL image stream it contains all the version of MySQL and openshift actively monitors this image stream. 
+* *Image Streams:* Its a resource file that compiles all of the related images into a single file. For example for MySQL image stream it contains all the version of MySQL and openshift actively monitors this image stream. 
 	
 	* If any patch or security update is release then openshift will automatically detect these changes and build our application with the latest updates by triggering a new rebuild and redeploy. This behavior can be configured 
 
-* Build Configuration : After creating a new application, the build process starts creating a buildconfig pod.
+* *Build Configuration:* After creating a new application, the build process starts creating a buildconfig pod.
 	
 	* The BuildConfig pod is responsible for creating the images in openshift and push them to the internal docker registry.
 
-* Deployment Configurations : Represents a set of pods created from the same container image. This is used to manage Rolling updates, make an update to the base image and push it out for deployment via the CI/CD pipeline. 
+* *Deployment Configurations:* Represents a set of pods created from the same container image. This is used to manage Rolling updates, make an update to the base image and push it out for deployment via the CI/CD pipeline. 
 	
 	* The DeploymentConfig pod is responsible for deploying the pods into the openshift.
 	
 * The Build/Deployment config resources do not interact directly. The BuildConfig resources do not interact directly.
+
 * The BuildCOnfig creates or updated a container image and the DeploymentConfig reacts to this new image or to the updated image event and creates pods from  the image.
 
-* Routes : It exposes kubernetes services to the external world so that our application can be accessed via http url from outside of kubernetes/openshift cluster.
+* *Routes:* It exposes kubernetes services to the external world so that our application can be accessed via http url from outside of kubernetes/openshift cluster.
 
-* Devops Tools : SCM integration, CI/CD pipeline.
+* *Devops Tools:* SCM integration, CI/CD pipeline.
 
-* Webconsole : Provides user friendly interaction to scale pods set resource limits create and claim persistence volumes. Provide Role based access to the users.
+* *Webconsole:* Provides user friendly interaction to scale pods set resource limits create and claim persistence volumes. Provide Role based access to the users.
 	
 	Benefits of webconsole
 	----------------------
 
 	* Openshift webconsole is available in the master node.
+	
 	* Webconsole provides the following features
-			* create project and manage application 
-			* scaling and managing users, teams
-			* create & manage project quota, user membership, secrets, pvc
-			* monitor build & deployements 
-			* implement health checks
-			* create DI/CD pipeline using jenkins 			
+		* create project and manage application 
+		* scaling and managing users, teams
+		* create & manage project quota, user membership, secrets, pvc
+		* monitor build & deployements 
+		* implement health checks
+		* create DI/CD pipeline using jenkins 			
 			
 
 | Openshift commands |
@@ -188,4 +194,5 @@ oc delete project <project_name> <br />
 oc exec <br />
 
 * oc-new cmd creates only the service for the app and will not create the route for the app.
+
 * imagestream is optional & openshift will detect the language of the app code based of build configuration. But it will help us to control or chose the build for a particular version of image tag if given else openshift will use the latest available tag for the image stream.
