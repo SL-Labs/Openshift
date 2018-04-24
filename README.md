@@ -6,11 +6,11 @@
 
 Its a segregated user space env for running our application. This is made possible with the help of the below linux features
 
-* Namespace --> Generally used to isolate process to hide containers and protect system resources making it invisible to other containers and avoid interaction between each containers.Docker creates namespace for each containers. 
+*Namespace:* Generally used to isolate process to hide containers and protect system resources making it invisible to other containers and avoid interaction between each containers.Docker creates namespace for each containers. 
 
-* CGroups (Controll Groups) -->  Creates partition for the set of process to limit and make sure that the resources are available only for that particular container and its not stealing too much resources from the host machine which will end of performance issue and resource failures to the host machine
+*CGroups (Controll Groups):* Creates partition for the set of process to limit and make sure that the resources are available only for that particular container and its not stealing too much resources from the host machine which will end of performance issue and resource failures to the host machine
 
-* SELinux --> This is used to protect the access between each containers and also between containers to host machine. 
+*SELinux:* This is used to protect the access between each containers and also between containers to host machine. 
 
 Container are not new concepts but dockers made it easy, friendly and usable.
 
@@ -19,15 +19,16 @@ Container are not new concepts but dockers made it easy, friendly and usable.
 | Docker | 
 ==========
 
-Docker is a new way of deployment strategy which will pack our app with all the needed dependencies & lib.
-Docker is an Opensource Container implementation supported by Red Hat and used in openshift
+* Docker is a new way of deployment strategy which will pack our app with all the needed dependencies & lib.
+* Docker is an Opensource Container implementation supported by Red Hat and used in openshift
 
-* Docker File : Contains a set of instruction on how to create a docker image & run our app. It defines all the needed dependences and lib that are required to run our app. 
-* Docker Image : It a template to create containers.
-* Docker Container : Its an instance of Docker images running as an isolated process.
-* Docker Registry : Docker images are stored in the registry 
+*Docker File:* Contains a set of instruction on how to create a docker image & run our app. It defines all the needed dependences and lib that are required to run our app. 
 
+*Docker Image:* It a template to create containers.
 
+*Docker Container:* Its an instance of Docker images running as an isolated process.
+
+*Docker Registry:* Docker images are stored in the registry 
 
 | Docker commands |
 ===================
@@ -52,7 +53,8 @@ Best Practice to create Docker File
 
 * Docker will create layers for each instructions in the docker file. Hence its a good practice to specify all commands grouped together in a single line to avoid docker not to create lots of complex layers and increasing the docker image size
 
-* For readability purpose we can use line breaks \ in dockerFile 
+* For readability purpose we can use line breaks \ in dockerFile
+
 * Always use ADD instead of COPY
 
 * Diff B/W ADD & COPY is ADD can do what COPY does + it has the ability to unzip or untar from archive. It can also download from the url.  
@@ -64,8 +66,8 @@ Best Practice to create Docker File
 | Kubernetes  |
 ===============
 
-Kubernetes is an container orchestration and management tool/software which provides Caas (Container As A Service)
-Kubernetes contains Etcd (key value store) where its store all its data, state of the containers and all information that is required to run the cluster.
+* Kubernetes is an container orchestration and management tool/software which provides Caas (Container As A Service)
+* Kubernetes contains Etcd (key value store) where its store all its data, state of the containers and all information that is required to run the cluster.
 
 Need:
 -----
@@ -79,17 +81,17 @@ But at the same time they are bound to fail.
 
 Kubernetes cluster consists of a master node & worker node.
 
-Master node takes care of orchestration, scheduling, monitoring, datastore, management, replication, authentication.
-Worker node is where our application are deployed as containers i.e, pods.
+* Master node takes care of orchestration, scheduling, monitoring, datastore, management, replication, authentication.
+* Worker node is where our application are deployed as containers i.e, pods.
 
 Task:
 ----- 
 
-* Orchestration : How to make sure that containers talk to each other in the cluster. Solution to this problem is : Services (since containers ip address are not constant and transient)
+*Orchestration:* How to make sure that containers talk to each other in the cluster. Solution to this problem is : Services (since containers ip address are not constant and transient)
 
-* scheduling : How to make sure that our application is highly available with the desired minimum number of instance running at any given time. Solution to this problem is Replication controllers. Also we can scale extra number of containers based on load.
+*Scheduling:* How to make sure that our application is highly available with the desired minimum number of instance running at any given time. Solution to this problem is Replication controllers. Also we can scale extra number of containers based on load.
 
-* isolation : Maintains the integrity of the cluster and makes sure that the failure of container is not affecting the other containers running in different nodes 
+*Isolation:* Maintains the integrity of the cluster and makes sure that the failure of container is not affecting the other containers running in different nodes 
 
 
 Features:
@@ -110,8 +112,8 @@ Features:
 | Openshift |
 =============
 
-Build on top of docker & kubernetes inheriting its core features and implements some extra features on top of 
-to it making it user friendly for developers & administrators and implementing CI/CD pipeline for devops process.
+* Build on top of docker & kubernetes inheriting its core features and implements some extra features on top of 
+* to it making it user friendly for developers & administrators and implementing CI/CD pipeline for devops process.
 
 Features: 
 ---------
